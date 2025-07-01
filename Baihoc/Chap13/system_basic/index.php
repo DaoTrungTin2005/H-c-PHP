@@ -1,5 +1,9 @@
 <?php
-require 'inc/header.php'
+// Nhúng cái hàm get_header và get_footer vô mới xài dc
+require 'lib/template.php';
+
+// require 'inc/header.php'
+get_header();
 ?>
 
 <?php
@@ -25,5 +29,6 @@ else {
 }
 ?>
 <?php
-require 'inc/footer.php'
+// require 'inc/footer.php'
+get_footer();
 ?>
