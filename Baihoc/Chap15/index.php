@@ -41,8 +41,44 @@ if (isset($_FILES['file'])) {
             $error['file size'] = "Chỉ được upload file bé hơn 20 MB";
         }
 
+        // 🔹 Kiểm tra xem file đã tồn tại trên hệ thống chưa.
+        // 🔸 Nếu đã tồn tại, ta sẽ tạo ra một tên mới để tránh ghi đè file cũ.
         if (file_exists($upload_file)) {
-            $error['file exists'] = "File đã tồn tại trên hệ thống";
+
+
+            //========== Xử lí đổi tên file tự động ==============
+
+            // 🔹 Lấy tên file không bao gồm phần đuôi mở rộng (extension).
+            // Ví dụ: anh.jpg → lấy được anh
+            $file_name = pathinfo($_FILES['file']['name'], PATHINFO_FILENAME);
+
+                // Tạo tên file mới bằng cách nối thêm chữ " -copy" vào tên gốc.
+                // Ví dụ: anh → anh -copy
+            ;
+            $new_file_name = $file_name . ' -copy';
+            echo "Tên file đang làm nè: $file_name <br>";
+            echo "Tên file mới sẽ là: $new_file_name <br>";
+
+            //🔹 Tạo đường dẫn file mới: thư mục + tên file mới + đuôi mở rộng
+            // Ví dụ: uploads/anh -copy.jpg
+            $new_upload_file = $upload_dir . $new_file_name . '.' . $type;
+            echo "Tên Đường dẫn mới: $new_upload_file <br>";
+
+
+            //🔹 Nếu anh -copy.jpg cũng đã tồn tại, thì sẽ thêm số vào như sau:
+            // anh -copy(1).jpg
+            // anh -copy(2).jpg
+            // ...
+            // Dừng khi tìm được 1 tên chưa tồn tại trên hệ thống.
+            $k = 1;
+            while (file_exists($new_upload_file)) {
+                $new_file_name = $file_name . " -copy({$k}).";
+                $k++;
+                $new_upload_file = $upload_dir . $new_file_name . $type;
+            }
+
+            // Sau khi bạn đã tạo được một tên file mới không bị trùng (ví dụ: uploads/anh -copy(1).jpg), bạn cần gán lại giá trị đường dẫn file này cho biến chính $upload_file.
+            $upload_file = $new_upload_file;
         }
 
         // Nếu không có lỗi, tiến hành lưu file
@@ -62,6 +98,7 @@ if (isset($_FILES['file'])) {
             }
         } else {
             /// Nếu có lỗi, hiển thị mảng lỗi
+
             show_array($error);
         }
     }
