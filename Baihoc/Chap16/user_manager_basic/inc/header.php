@@ -17,6 +17,8 @@
                 <li><a href="?page=product">Sản phẩm</a></li>
                 <li><a href="?page=contact">Liên hệ</a></li>
                 <li><a href="?page=course">Khóa học</a></li>
+                <li><a href="?page=login">Đăng nhập</a></li>
+                <li><a href="?page=logout">Đăng xuất</a></li>
             </ul>
         </div>
         <!--end header-->
