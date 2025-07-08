@@ -18,3 +18,13 @@ function get_footer()
         echo "không tồn tại đường dẫn $path_footer";
     }
 }
+
+function get_sidebar()
+{
+    $path_sidebar =  'inc/sidebar.php';
+    if (file_exists($path_sidebar))
+        require $path_sidebar;
+    else {
+        echo "không tồn tại đường dẫn $path_footer";
+    }
+}
