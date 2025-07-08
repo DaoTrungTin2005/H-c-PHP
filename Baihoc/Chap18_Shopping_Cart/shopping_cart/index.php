@@ -1,6 +1,7 @@
 <?php
 require 'lib/data.php';
 require 'lib/template.php';
+require 'lib/pages.php';
 
 #Dữ liệu
 require 'data/pages.php';
