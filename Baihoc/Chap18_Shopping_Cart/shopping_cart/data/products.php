@@ -24,7 +24,7 @@ $list_product  = array(
         'price' => 34790000,
         'code' => 'UNI#1',
         'product_desc' => 'iphone X 256GB Gray là một trong những sản phẩm mới nhất của Apple, với thiết kế sang trọng và hiệu năng mạnh mẽ.',
-        'product_thumb' => 'https://cdn.tgdd.vn/Products/Images/42/150930/iphone-x-256gb-gray-600x600.jpg',
+        'product_thumb' => 'https://cdn.tgdd.vn/Products/Images/42/114111/Kit/iphone-x-256gb-motachucnang.jpg',
         'product_content' => '<p>iphone X 256GB Gray là một trong những sản phẩm mới nhất của Apple, với thiết kế sang trọng và hiệu năng mạnh mẽ. </p>',
         'cat_id' => '1',
     ),

@@ -2,6 +2,8 @@
 require 'lib/data.php';
 require 'lib/template.php';
 require 'lib/pages.php';
+require 'lib/product.php';
+require 'lib/number.php';
 
 #Dữ liệu
 require 'data/pages.php';
