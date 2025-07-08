@@ -8,6 +8,7 @@ function get_info_cat($cat_id)
 {
     global $list_product_cat;
     if (array_key_exists($cat_id, $list_product_cat)) {
+        $list_product_cat[$cat_id]['url'] = "?mod=product&act=main&cat_id={$cat_id}";
         return $list_product_cat[$cat_id];
     }
     return false;
