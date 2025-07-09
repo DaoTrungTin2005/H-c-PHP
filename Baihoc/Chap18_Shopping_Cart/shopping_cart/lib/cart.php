@@ -74,6 +74,9 @@ function get_list_buy_cart()
 
                 //Nếu sản phẩm chưa có đường link (URL) đến trang chi tiết, thì tự động thêm vào.
                 $item['url'] = "?mod=product&act=detail&id={$id}";
+
+                // Thêm đường dẫn để xóa sản phẩm khỏi giỏ hàng
+                $item['url_delete_cart'] = "?mod=cart&act=delete&id={$id}";
             }
         }
 
@@ -96,7 +99,7 @@ function get_num_order_cart()
     return false;
 }
 
-        // Trả về tổng tiền của tất cả sản phẩm trong giỏ hàng
+// Trả về tổng tiền của tất cả sản phẩm trong giỏ hàng
 function get_total_cart()
 {
     if (isset($_SESSION['cart'])) {
@@ -106,4 +109,19 @@ function get_total_cart()
     return false;
 }
 
-?>
+function delete_cart($id)
+{
+
+    if (isset($_SESSION['cart'])) {
+    //    ☑️ Nếu bạn truyền một ID (tức là bạn muốn xóa 1 sản phẩm cụ thể)...
+    // ☑️ Sử dụng unset() để xóa phần tử có ID đó trong giỏ hàng (buy[$id]).
+        if (!empty($id)) {
+            unset($_SESSION['cart']['buy'][$id]); // Xóa sản phẩm khỏi giỏ hàng
+
+            // Cập nhật lại thông tin giỏ hàng sau khi xóa
+            update_info_cart(); // Cập nhật lại số lượng và tổng tiền trong giỏ hàng
+        } else {
+            unset($_SESSION['cart']); // ☑️ Nếu không có ID (hoặc rỗng) → bạn hiểu là người dùng muốn xóa toàn bộ giỏ hàng.
+        }
+    }
+}

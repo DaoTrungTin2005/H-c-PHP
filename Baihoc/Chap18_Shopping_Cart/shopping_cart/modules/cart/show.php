@@ -64,7 +64,8 @@ show_array($list_buy);
                             <td><?php echo currency_format($item['sub_total']); ?></td>
 
                             <td>
-                                <a href="" title="Xóa sản phẩm" class="del-product"><i class="fa fa-trash-o"></i></a>
+                                <a href="<?php echo $item['url_delete_cart'] ?>" title="Xóa sản phẩm"
+                                    class="del-product"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
 
@@ -79,7 +80,8 @@ show_array($list_buy);
                             <td colspan="7">
                                 <div class="clearfix">
                                     <p id="total-price" class="fl-right">Tổng giá:
-                                        <span><?php echo currency_format(get_total_cart()); ?></span></p>
+                                        <span><?php echo currency_format(get_total_cart()); ?></span>
+                                    </p>
                                 </div>
                             </td>
                         </tr>
