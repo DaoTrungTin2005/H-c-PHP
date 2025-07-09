@@ -105,7 +105,7 @@ show_array($list_buy);
                     <span>0</span> để xóa sản phẩm khỏi giỏ hàng. Nhấn vào thanh toán để hoàn tất mua hàng.
                 </p>
                 <a href="?page=home" title="" id="buy-more">Mua tiếp</a><br />
-                <a href="" title="" id="delete-cart">Xóa giỏ hàng</a>
+                <a href="?mod=cart&act=delete_all" title="" id="delete-cart">Xóa giỏ hàng</a>
             </div>
         </div>
 

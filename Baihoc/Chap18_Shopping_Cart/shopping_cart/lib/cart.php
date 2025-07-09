@@ -109,7 +109,7 @@ function get_total_cart()
     return false;
 }
 
-function delete_cart($id)
+function delete_cart($id = null)
 {
 
     if (isset($_SESSION['cart'])) {
