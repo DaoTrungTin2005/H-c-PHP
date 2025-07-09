@@ -1,9 +1,14 @@
 <?php
+session_start();
+ob_start();
+
 require 'lib/data.php';
 require 'lib/template.php';
 require 'lib/pages.php';
 require 'lib/product.php';
 require 'lib/number.php';
+require 'lib/cart.php';
+
 
 #Dữ liệu
 require 'data/pages.php';
