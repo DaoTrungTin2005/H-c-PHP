@@ -21,6 +21,8 @@ function add_cart($id)
     $_SESSION['cart']['buy'][$id] = array(
 
         'id' => $item['id'],
+        // url	Đường dẫn đến trang chi tiết sản phẩm
+        'url' => $item['url'],
         'product_title' => $item['product_title'],
         'price' => $item['price'],
         'product_thumb' => $item['product_thumb'],
@@ -54,5 +56,41 @@ function update_info_cart()
             'num_order' => $num_order, // Tổng số lượng sản phẩm trong giỏ hàng
             'total' => $total,
         );
+    }
+}
+
+// Trả về danh sách sản phẩm đang có trong giỏ hàng.
+function get_list_buy_cart()
+{
+    if (isset($_SESSION['cart'])) {
+
+        // Duyệt qua từng sản phẩm có trong giỏ hàng:
+        // $id là ID của sản phẩm.
+        // $item là mảng chứa thông tin sản phẩm đó (tên, giá, số lượng…).
+        // Dấu & (tham chiếu) cho phép bạn thay đổi trực tiếp giá trị trong session.
+        // 👉 Đây là cách thêm trường url vào từng sản phẩm ngay trong session, không tạo bản sao.
+        foreach ($_SESSION['cart']['buy'] as $id => &$item) {
+            if (!isset($item['url'])) {
+
+                //Nếu sản phẩm chưa có đường link (URL) đến trang chi tiết, thì tự động thêm vào.
+                $item['url'] = "?mod=product&act=detail&id={$id}";
+            }
+        }
+
+        //☑️ Kết thúc vòng lặp, rồi trả về toàn bộ danh sách sản phẩm trong giỏ hàng.
+        return $_SESSION['cart']['buy'];
+    }
+    return false;
+}
+
+
+// Trả về tổng số lượng sản phẩm trong giỏ hàng.
+// 📌 $_SESSION['cart']['info']['num_order']:
+// Giá trị này được tính từ update_info_cart(), chính là tổng của tất cả các qty của sản phẩm.
+function get_num_order_cart()
+{
+    if (isset($_SESSION['cart'])) {
+        // Trả về số lượng sản phẩm trong giỏ hàng
+        return $_SESSION['cart']['info']['num_order'];
     }
 }

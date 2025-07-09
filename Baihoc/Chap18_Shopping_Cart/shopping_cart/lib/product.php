@@ -28,16 +28,20 @@ function get_list_product_by_cat_id($cat_id)
         }
     }
     return $result;
-} 
+}
 
 
 // Tìm một sản phẩm theo id. Nếu có, thêm đường dẫn để thêm sản phẩm vào giỏ hàng (url_add_cart).
-function get_product_by_id($id){
-        global $list_product;
-        if (array_key_exists($id, $list_product)) {
-            $list_product[$id]['url_add_cart'] = "?mod=cart&act=add&id={$id}";
-            return $list_product[$id];
-        }
-        return false;
+function get_product_by_id($id)
+{
+    global $list_product;
+    if (array_key_exists($id, $list_product)) {
+
+        //  url_add_cart: để khi click “Thêm vào giỏ hàng”
+        // url: để khi click vào tên ảnh hoặc tên sản phẩm thì đi đến trang chi tiết.
+        $list_product[$id]['url_add_cart'] = "?mod=cart&act=add&id={$id}";
+
+        return $list_product[$id];
+    }
+    return false;
 }
-?>

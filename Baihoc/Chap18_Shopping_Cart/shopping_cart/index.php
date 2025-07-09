@@ -8,6 +8,7 @@ require 'lib/pages.php';
 require 'lib/product.php';
 require 'lib/number.php';
 require 'lib/cart.php';
+require 'lib/url.php';
 
 
 #Dữ liệu

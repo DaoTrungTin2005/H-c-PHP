@@ -11,6 +11,9 @@ add_cart($id);
 //     'buy' => [...],   // Chứa danh sách các sản phẩm
 //     'info' => [...]   // Chứa tổng số lượng và tổng tiền
 // ];
-show_array($_SESSION['cart']);
+// show_array($_SESSION['cart']);
+
+// Thêm vào giỏ hàng thì chuyển hướng về trang giỏ hàng
+redirect('?mod=cart&act=show');
 
 ?>

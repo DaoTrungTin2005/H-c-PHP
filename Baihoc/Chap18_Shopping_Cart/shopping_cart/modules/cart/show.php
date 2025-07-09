@@ -1,6 +1,14 @@
-<?php 
+<?php
+// show thử dữ lieu giỏ hàng 
 
-?><div id="main-content-wp" class="cart-page">
+// Thay vì như này để xem thông tin giỏ hàng thì viết dô cái hàm get_list_buy_cart()
+// show_array($_SESSION['cart']);
+
+$list_buy = get_list_buy_cart();
+show_array($list_buy);
+?>
+
+<div id="main-content-wp" class="cart-page">
     <div class="section" id="breadcrumb-wp">
         <div class="wp-inner">
             <div class="section-detail">
@@ -9,6 +17,10 @@
         </div>
     </div>
     <div id="wrapper" class="wp-inner clearfix">
+        <?php
+        if (!empty($list_buy)) {
+        ?>
+
         <div class="section" id="info-cart-wp">
             <div class="section-detail table-responsive">
                 <table class="table">
@@ -23,63 +35,44 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php 
+                        foreach ($list_buy as $item) {
+                        ?>
+
                         <tr>
-                            <td>HCA00031</td>
+
+                            <td><?php echo $item['code']; ?></td>
+
                             <td>
-                                <a href="" title="" class="thumb">
-                                    <img src="public/images/img-product.png" alt="">
+                                <a href="<?php echo $item['url']; ?>" title=" " class="thumb">
+                                    <img src="<?php echo $item['product_thumb']; ?>" alt="">
                                 </a>
                             </td>
+
                             <td>
-                                <a href="" title="" class="name-product">Đồ chơi trẻ em dưới 1 tuổi</a>
+                                <a href="<?php echo $item['url']; ?>" title="<?php echo $item['product_title']; ?>"
+                                    class="name-product"><?php echo $item['product_title']; ?></a>
                             </td>
-                            <td>5.000.000đ</td>
+
+                            <td><?php echo currency_format($item['price']); ?></td>
+
                             <td>
-                                <input type="text" name="num-order" value="1" class="num-order">
+                                <input type="text" name="num-order" value="<?php echo $item['qty']; ?>"
+                                    class="num-order">
                             </td>
-                            <td>5.000.000đ</td>
+
+                            <td><?php echo currency_format($item['sub_total']); ?></td>
+
                             <td>
-                                <a href="" title="" class="del-product"><i class="fa fa-trash-o"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>HCA00032</td>
-                            <td>
-                                <a href="" title="" class="thumb">
-                                    <img src="public/images/img-product.png" alt="">
-                                </a>
-                            </td>
-                            <td>
-                                <a href="" title="" class="name-product">Đồ chơi trẻ em dưới 1 tuổi</a>
-                            </td>
-                            <td>7.000.000đ</td>
-                            <td>
-                                <input type="text" name="num-order" value="1" class="num-order">
-                            </td>
-                            <td>7.000.000đ</td>
-                            <td>
-                                <a href="" title="" class="del-product"><i class="fa fa-trash-o"></i></a>
+                                <a href="" title="Xóa sản phẩm" class="del-product"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>HCA00032</td>
-                            <td>
-                                <a href="" title="" class="thumb">
-                                    <img src="public/images/img-product.png" alt="">
-                                </a>
-                            </td>
-                            <td>
-                                <a href="" title="" class="name-product">Đồ chơi trẻ em dưới 1 tuổi</a>
-                            </td>
-                            <td>7.000.000đ</td>
-                            <td>
-                                <input type="text" name="num-order" value="1" class="num-order">
-                            </td>
-                            <td>7.000.000đ</td>
-                            <td>
-                                <a href="" title="" class="del-product"><i class="fa fa-trash-o"></i></a>
-                            </td>
-                        </tr>
+
+                        <?php } ?>
+
+
+
+
                     </tbody>
                     <tfoot>
                         <tr>
@@ -106,10 +99,22 @@
         <div class="section" id="action-cart-wp">
             <div class="section-detail">
                 <p class="title">Click vào <span>“Cập nhật giỏ hàng”</span> để cập nhật số lượng. Nhập vào số lượng
-                    <span>0</span> để xóa sản phẩm khỏi giỏ hàng. Nhấn vào thanh toán để hoàn tất mua hàng.</p>
+                    <span>0</span> để xóa sản phẩm khỏi giỏ hàng. Nhấn vào thanh toán để hoàn tất mua hàng.
+                </p>
                 <a href="?page=home" title="" id="buy-more">Mua tiếp</a><br />
                 <a href="" title="" id="delete-cart">Xóa giỏ hàng</a>
             </div>
         </div>
+
+
+        <?php
+        } else {
+            echo "<p>Hiện tại giỏ hàng của bạn chưa có sản phẩm nào.</p>";
+        ?>
+
+        <?php
+        }
+        ?>
+
     </div>
 </div>
