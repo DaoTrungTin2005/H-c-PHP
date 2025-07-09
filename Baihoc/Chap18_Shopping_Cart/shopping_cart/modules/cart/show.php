@@ -78,7 +78,8 @@ show_array($list_buy);
                         <tr>
                             <td colspan="7">
                                 <div class="clearfix">
-                                    <p id="total-price" class="fl-right">Tổng giá: <span>12.000.000đ</span></p>
+                                    <p id="total-price" class="fl-right">Tổng giá:
+                                        <span><?php echo currency_format(get_total_cart()); ?></span></p>
                                 </div>
                             </td>
                         </tr>

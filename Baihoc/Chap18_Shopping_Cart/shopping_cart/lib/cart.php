@@ -93,4 +93,17 @@ function get_num_order_cart()
         // Trả về số lượng sản phẩm trong giỏ hàng
         return $_SESSION['cart']['info']['num_order'];
     }
+    return false;
 }
+
+        // Trả về tổng tiền của tất cả sản phẩm trong giỏ hàng
+function get_total_cart()
+{
+    if (isset($_SESSION['cart'])) {
+        // Trả về tổng tiền của giỏ hàng
+        return $_SESSION['cart']['info']['total'];
+    }
+    return false;
+}
+
+?>
