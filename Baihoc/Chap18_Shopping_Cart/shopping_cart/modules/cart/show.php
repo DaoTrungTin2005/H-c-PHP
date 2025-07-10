@@ -107,7 +107,7 @@ show_array($list_buy);
                                             <input type="submit" id="update-cart" name="btn_update_cart"
                                                 value="Cap nhat gio hang">
 
-                                            <a href="?page=checkout" title="" id="checkout-cart">Thanh toán</a>
+                                            <a href="?mod=cart&act=checkout" title="" id="checkout-cart">Thanh toán</a>
                                         </div>
                                     </div>
                                 </td>
