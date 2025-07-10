@@ -23,80 +23,100 @@ show_array($list_buy);
 
         <div class="section" id="info-cart-wp">
             <div class="section-detail table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td>Mã sản phẩm</td>
-                            <td>Ảnh sản phẩm</td>
-                            <td>Tên sản phẩm</td>
-                            <td>Giá sản phẩm</td>
-                            <td>Số lượng</td>
-                            <td colspan="2">Thành tiền</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                        foreach ($list_buy as $item) {
-                        ?>
 
-                        <tr>
+                <form action="?mod=cart&act=update" method="post">
 
-                            <td><?php echo $item['code']; ?></td>
-
-                            <td>
-                                <a href="<?php echo $item['url']; ?>" title=" " class="thumb">
-                                    <img src="<?php echo $item['product_thumb']; ?>" alt="">
-                                </a>
-                            </td>
-
-                            <td>
-                                <a href="<?php echo $item['url']; ?>" title="<?php echo $item['product_title']; ?>"
-                                    class="name-product"><?php echo $item['product_title']; ?></a>
-                            </td>
-
-                            <td><?php echo currency_format($item['price']); ?></td>
-
-                            <td>
-                                <input type="text" name="num-order" value="<?php echo $item['qty']; ?>"
-                                    class="num-order">
-                            </td>
-
-                            <td><?php echo currency_format($item['sub_total']); ?></td>
-
-                            <td>
-                                <a href="<?php echo $item['url_delete_cart'] ?>" title="Xóa sản phẩm"
-                                    class="del-product"><i class="fa fa-trash-o"></i></a>
-                            </td>
-                        </tr>
-
-                        <?php } ?>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Mã sản phẩm</td>
+                                <td>Ảnh sản phẩm</td>
+                                <td>Tên sản phẩm</td>
+                                <td>Giá sản phẩm</td>
+                                <td>Số lượng</td>
+                                <td colspan="2">Thành tiền</td>
+                            </tr>
+                        </thead>
+                        <tbody>
 
 
 
 
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <div class="clearfix">
-                                    <p id="total-price" class="fl-right">Tổng giá:
-                                        <span><?php echo currency_format(get_total_cart()); ?></span>
-                                    </p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="7">
-                                <div class="clearfix">
-                                    <div class="fl-right">
-                                        <a href="" title="" id="update-cart">Cập nhật giỏ hàng</a>
-                                        <a href="?page=checkout" title="" id="checkout-cart">Thanh toán</a>
+                            <?php
+                                foreach ($list_buy as $item) {
+                                ?>
+
+                            <tr>
+
+                                <td><?php echo $item['code']; ?></td>
+
+                                <td>
+                                    <a href="<?php echo $item['url']; ?>" title=" " class="thumb">
+                                        <img src="<?php echo $item['product_thumb']; ?>" alt="">
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a href="<?php echo $item['url']; ?>" title="<?php echo $item['product_title']; ?>"
+                                        class="name-product"><?php echo $item['product_title']; ?></a>
+                                </td>
+
+                                <td><?php echo currency_format($item['price']); ?></td>
+
+                                <!-- Lấy số luog cập nhat -->
+                                <!-- Giả sử có 2 sản phẩm có ID là 2 và 5, khi người dùng chỉnh số lượng và bấm "Cập nhật giỏ hàng", trình duyệt sẽ gửi mảng qty như sau:
+
+                                $_POST['qty'] = array(
+                                2 => 3, // sản phẩm ID=2, số lượng người dùng chọn là 3
+                                5 => 1, // sản phẩm ID=5, số lượng người dùng chọn là 1
+                            ); -->
+                                <td>
+                                    <input type="number" min="1" max="10" name="qty[<?php echo $item['id'] ?>]"
+                                        value="<?php echo $item['qty']; ?>" class="num-order">
+                                </td>
+
+                                <td><?php echo currency_format($item['sub_total']); ?></td>
+
+                                <td>
+                                    <a href="<?php echo $item['url_delete_cart'] ?>" title="Xóa sản phẩm"
+                                        class="del-product"><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            </tr>
+
+                            <?php } ?>
+
+
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <div class="clearfix">
+                                        <p id="total-price" class="fl-right">Tổng giá:
+                                            <span><?php echo currency_format(get_total_cart()); ?></span>
+                                        </p>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <div class="clearfix">
+                                        <div class="fl-right">
+
+                                            <input type="submit" id="update-cart" name="btn_update_cart"
+                                                value="Cap nhat gio hang">
+
+                                            <a href="?page=checkout" title="" id="checkout-cart">Thanh toán</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </form>
+
             </div>
         </div>
         <div class="section" id="action-cart-wp">

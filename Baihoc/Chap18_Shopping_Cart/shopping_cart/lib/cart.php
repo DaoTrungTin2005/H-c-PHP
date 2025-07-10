@@ -109,12 +109,13 @@ function get_total_cart()
     return false;
 }
 
+// Xóa sản phẩm trong gio hang va xoa nguyen cái gio hàng   
 function delete_cart($id = null)
 {
 
     if (isset($_SESSION['cart'])) {
-    //    ☑️ Nếu bạn truyền một ID (tức là bạn muốn xóa 1 sản phẩm cụ thể)...
-    // ☑️ Sử dụng unset() để xóa phần tử có ID đó trong giỏ hàng (buy[$id]).
+        //    ☑️ Nếu bạn truyền một ID (tức là bạn muốn xóa 1 sản phẩm cụ thể)...
+        // ☑️ Sử dụng unset() để xóa phần tử có ID đó trong giỏ hàng (buy[$id]).
         if (!empty($id)) {
             unset($_SESSION['cart']['buy'][$id]); // Xóa sản phẩm khỏi giỏ hàng
 
@@ -124,4 +125,23 @@ function delete_cart($id = null)
             unset($_SESSION['cart']); // ☑️ Nếu không có ID (hoặc rỗng) → bạn hiểu là người dùng muốn xóa toàn bộ giỏ hàng.
         }
     }
+}
+
+// Cập nhật giỏ hang khi thay doi so luong
+
+// Vòng lặp foreach chạy qua từng sản phẩm trong giỏ hàng.
+// Với mỗi $id, ta cập nhật:
+// qty: số lượng mới mà người dùng nhập.
+// sub_total: thành tiền mới = giá × số lượng.
+
+// Cuối cùng gọi update_info_cart() để tính lại:
+// num_order: tổng số sản phẩm
+// total: tổng tiền giỏ hàng
+function update_cart($qty)
+{
+    foreach ($qty as $id => $new_qty) {
+        $_SESSION['cart']['buy'][$id]['qty'] = $new_qty;
+        $_SESSION['cart']['buy'][$id]['sub_total'] = $new_qty * $qty = $_SESSION['cart']['buy'][$id]['price'];
+    }
+    update_info_cart();
 }
