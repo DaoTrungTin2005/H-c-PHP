@@ -2,7 +2,8 @@
 
 //Nhúng các hàm hỗ trợ giao diện như get_header() và get_footer() từ file template.php 
 require 'lib/template.php';
-require 'db/connect.php'
+require 'db/connect.php';
+require 'lib/data.php';
 
 
 

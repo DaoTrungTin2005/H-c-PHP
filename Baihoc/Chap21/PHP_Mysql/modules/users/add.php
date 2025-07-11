@@ -58,6 +58,8 @@ if (isset($_POST['btn_reg'])) {
     if (empty($error)) {
         $sql = "INSERT INTO tbl_user (fullname, email, password, username, gender)"
             . "VALUES ('{$fullname}', '{$email}', '{$password}', '{$username}', '{$gender}')";
+
+        //Đây là hàm thực thi câu lệnh SQL trong PHP dùng MySQLi.
         if (mysqli_query($conn, $sql)) {
             echo "Them dl thanh cong";
         }
