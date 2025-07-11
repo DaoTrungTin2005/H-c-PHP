@@ -4,6 +4,8 @@
 require 'lib/template.php';
 require 'db/connect.php';
 require 'lib/data.php';
+require 'lib/url.php';
+require 'lib/users.php';
 
 
 

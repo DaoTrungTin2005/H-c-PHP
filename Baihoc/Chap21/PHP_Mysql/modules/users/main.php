@@ -28,6 +28,9 @@ if (($num_rows) > 0) {
         $list_users[] = $row;
     }
 }
+
+
+
 show_array($list_users);
 
 
@@ -43,6 +46,7 @@ foreach ($list_users as &$user){
     $user['url_update'] = "?mod=users&act=update&id={$user['id']}";
     $user['url_delete'] = "?mod=users&act=delete&id={$user['id']}";
 }
+unset($user); // 🛠️ Dòng này bắt buộc để xóa tham chiếu, tránh lỗi ghi đè phần tử cuối
 
 ?>
 
@@ -96,7 +100,7 @@ foreach ($list_users as &$user){
 
                 <td><?php echo $user['email'] ?></td>
 
-                <td><?php echo $user['gender'] ?></td>
+                <td><?php echo show_gender($user['gender']) ?></td>
 
                 <td><a href="<?php echo $user['url_update'] ?>">Sửa</a> |
                     <a href="<?php echo $user['url_delete'] ?>">Xóa</a>
