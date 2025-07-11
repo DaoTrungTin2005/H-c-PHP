@@ -2,16 +2,19 @@
 
 //Nhúng các hàm hỗ trợ giao diện như get_header() và get_footer() từ file template.php 
 require 'lib/template.php';
-require 'db/connect.php';
 require 'lib/data.php';
 require 'lib/url.php';
 require 'lib/users.php';
+require 'db/config.php';
+require 'db/database.php';
 
 
 
 ?>
 
 <?php
+
+db_connect($config);
 
 // Lấy giá trị mod và act từ URL để xác định module (chức năng) và hành động (trang cụ thể) cần chạy.
 // Nếu không có mod hoặc act, nó sẽ mặc định về 'home' và 'main'.

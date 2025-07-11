@@ -27,21 +27,33 @@ if (isset($_POST['btn_update'])) {
 
     // Nếu không có lỗi thì update
     if (empty($error)) {
-        $sql = "UPDATE tbl_user SET fullname ='{$fullname}', gender ='{$gender}' WHERE id= {$id}";
+        //     $sql = "UPDATE tbl_user SET fullname ='{$fullname}', gender ='{$gender}' WHERE id= {$id}";
 
-        //Đây là hàm thực thi câu lệnh SQL trong PHP dùng MySQLi.
-        if (mysqli_query($conn, $sql)) {
-            echo "Update dl thanh cong";
-        }
-    } else {
+        //     //Đây là hàm thực thi câu lệnh SQL trong PHP dùng MySQLi.
+        //     if (mysqli_query($conn, $sql)) {
+        //         echo "Update dl thanh cong";
+        //     }
+        // } else {
+        // }
+
+
+        $data = array(
+            'fullname' => $fullname,
+            'gender' => $gender,
+
+        );
+
+        db_update('tbl_user', $data, "id= {$id}");
+        redirect("?mod=users&act=main");
     }
 }
 
 // nói chung là cái này để Lấy thông tin của người dùng từ database ra để update (la để hiện thông tin cũ của ng cần update rồi mói update(hieen ở form á))
-$sql = "SELECT * FROM tbl_user WHERE id = $id";
+
+// $sql = "SELECT * FROM tbl_user WHERE id = $id";
 
 // Gửi câu lệnh SQL lên CSDL (MySQL) bằng hàm mysqli_query.
-$result = mysqli_query($conn, $sql);
+// $result = mysqli_query($conn, $sql);
 
 
 // mysqli_fetch_array() sẽ lấy dòng đầu tiên của kết quả SQL và trả về dạng mảng (array).
@@ -58,9 +70,21 @@ $result = mysqli_query($conn, $sql);
 //     [3] => tin@example.com
 //     [email] => tin@example.com
 // )
-$item = mysqli_fetch_array($result);
+// $item = mysqli_fetch_array($result);
 
+
+// 🔁 1. db_fetch_array("SELECT * FROM tbl_user")
+// Dùng trong phần danh sách thành viên (foreach ($list_users as $user)).
+// Lúc này, bạn muốn lấy toàn bộ dữ liệu từ bảng tbl_user => kết quả có thể nhiều dòng => cần dùng db_fetch_array().
+
+// 🧍 2. db_fetch_row("SELECT * FROM tbl_user WHERE id = $id")
+// Dùng trong phần sửa thông tin 1 người dùng cụ thể.
+// Vì bạn chỉ cần lấy ra 1 dòng duy nhất (user có id tương ứng) để hiển thị lên form sửa => dùng db_fetch_row() là đúng.
+
+$item = db_fetch_row("SELECT * FROM tbl_user WHERE id = $id");
 show_array($item);
+
+
 ?>
 
 <div id="content">
