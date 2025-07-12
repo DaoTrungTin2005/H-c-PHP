@@ -18,8 +18,6 @@
 $db = array(
     'hostname' => 'localhost',
     'username' => 'root',
-    'password' => '',
-    'database' => 'unitop',
+    'password' => 'trungtin07012005',
+    'database' => 'hoc_php',
 );
-
-

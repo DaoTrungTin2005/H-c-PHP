@@ -11,21 +11,9 @@
  * 
  */
 
-$config['base_url'] = "http://localhost/unitop/back-end/lesson/section-26/projectmvc.vn/";
+$config['base_url'] = "http://localhost/PHP-HOC/Baihoc/Chap26/MVC/";
 
 
 $config['default_module'] = 'home';
 $config['default_controller'] = 'index';
 $config['default_action'] = 'index';
-
-
-
-
-
-
-
-
-
-
-
-
