@@ -1,5 +1,11 @@
 <?php
 
+// Tiêu chí	autoload.php	construct() trong controller
+// Chạy khi nào?	Khi hệ thống khởi động lần đầu (index.php)	         Khi mỗi controller được gọi
+// Dùng để làm gì?	Load các thư viện/helper chung cho toàn bộ hệ thống	    Load riêng những thứ cần cho controller hiện tại
+// Có tự động gọi không?	✅ Có, được gọi trong appload.php	         ✅ Có, được gọi trong router.php
+// Có thay thế nhau được không?	❌ Không nên	                             ❌ Không nên
+
 function construct()
 {
     //    echo "DÙng chung, load đầu tiên";
